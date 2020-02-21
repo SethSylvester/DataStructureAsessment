@@ -131,6 +131,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\HunterTrahan\GroupAssessment\raygame\Room.cpp" />
     <ClCompile Include="AABB.cpp" />
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="List.cpp" />
@@ -139,6 +140,7 @@
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\HunterTrahan\GroupAssessment\raygame\Room.h" />
     <ClInclude Include="AABB.h" />
     <ClInclude Include="Actor.h" />
     <ClInclude Include="List.h" />

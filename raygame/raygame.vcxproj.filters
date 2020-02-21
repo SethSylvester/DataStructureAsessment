@@ -33,6 +33,9 @@
     <ClCompile Include="List.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\HunterTrahan\GroupAssessment\raygame\Room.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -55,6 +58,9 @@
     </ClInclude>
     <ClInclude Include="Node.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\HunterTrahan\GroupAssessment\raygame\Room.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
