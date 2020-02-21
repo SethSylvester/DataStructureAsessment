@@ -1,5 +1,7 @@
 #include "raylib.h"
 #include "Actor.h"
+#include "AABB.h"
+
 #pragma once
 class Player : public Actor
 {
@@ -9,6 +11,8 @@ private:
 public:
 	Player();
 	~Player();
+
+	AABB hitbox;
 
 	float speed = 250;
 	//DiagonalSpeed = (float)Math.Sqrt((Speed * Speed) + (Speed * Speed))/2;
@@ -24,5 +28,6 @@ public:
 
 	void TakeInput();
 	void Update();
+
 };
 
