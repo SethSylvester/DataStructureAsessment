@@ -2,7 +2,7 @@
 #include "List.h"
 
 template<typename Anytype>
-class UnorderedList : List<Anytype>
+class UnorderedList : public List<Anytype>
 {
 	public:
 		void insertFirst(const Anytype&) override;
@@ -81,37 +81,34 @@ inline void UnorderedList<Anytype>::DeleteNode(const Anytype & node)
 //Seth
 template<typename Anytype>
 inline bool UnorderedList<Anytype>::Search(const Anytype & search) {
+	//If not create a temporary node to cycle through to the next node
+	Iterator<Anytype> iter(m_first);
+
 	//Checks to see if the first result is the search target
-	if (m_first == search) {
-		return m_first;
+	if (iter == search) {
+		return iter;
 	}
 
 	else {
-		//If not create a temporary node to cycle through to the next node
-		Node<Anytype>* nextNode = m_first.next;
-
+		//Increment if the node isn't correct
+		iter++;
 		//If that is the search target return it.
-		if (nextNode == search) {
-			return nextNode;
+		if (iter == search) {
+			return iter;
 		}
 
-		//If thats not it, create another temporary node to cycle through
+		//If thats not it, cycle through
 		else {
-			Node<Anytype>* nNode;
 			bool searching = true;
-			while (searching) {
-				//nNode will always be the next node.
-				nNode = nextNode->Next;
+			for (auto i = m_first; i != m_last; i++) {
+				//Increment iterator to the next node
+				iter++;
 				//return if its what you're looking for
-				if (nNode == search) {
-					return nNode;
-				}
-				//Iterate through to the next node if avalible
-				else if (nNode != m_last) {
-					nextNode = nNode;
+				if (iter == search) {
+					return iter;
 				}
 				//If its the last one don't try to grab a null value
-				else if (nNode == m_last) {
+				else if (iter == m_last) {
 					searching = false;
 				}
 			}
