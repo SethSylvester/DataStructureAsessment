@@ -10,10 +10,10 @@
 ********************************************************************************************/
 
 #include "raylib.h"
+#include "AABB.h"
 #include "Actor.h"
 #include "Player.h"
-#include "AABB.h"
-#include "Timer.h"
+#include "Enemy.h"
 
 int main()
 {
@@ -26,10 +26,17 @@ int main()
 
 	SetTargetFPS(60);
 
-	Camera2D camera = Camera2D();
 	Player p;
 	AABB b;
-	Timer t;
+	Enemy e;
+	e.x = 50;
+	e.y = 50;
+
+	Camera2D camera = { 0 };
+	Vector2 playerTracking = {p.x, p.y};
+
+	camera.rotation = 0.0f;
+	camera.zoom = 1.0f;
 
 	//--------------------------------------------------------------------------------------
 
@@ -39,8 +46,13 @@ int main()
 		// Update
 		//----------------------------------------------------------------------------------
 		// TODO: Update your variables here
-		BeginMode2D(camera);
 		p.Update();
+		e.Update();
+
+		//Center the camera on the player
+		playerTracking = { p.x, p.y };
+
+		camera.target = playerTracking;
 		//----------------------------------------------------------------------------------
 
 		// Draw
@@ -49,15 +61,20 @@ int main()
 		
 		ClearBackground(BLACK);
 
+		BeginMode2D(camera);
+
 		b.Draw();
 
+		//Draw player and enemy
 		DrawCircle(p.x, p.y, 25, RAYWHITE);
+		DrawCircle(e.x, e.y, 25, RED);
 
-		DrawText("Congrats! You created your first window!", 190, 200, 20, RAYWHITE);
+		EndMode2D();
+
+		DrawText("Congrats! Dead meme!", 190, 200, 20, RAYWHITE);
 
 		EndDrawing();
 
-		EndMode2D();
 		//----------------------------------------------------------------------------------
 	}
 

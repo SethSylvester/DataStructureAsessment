@@ -1,10 +1,7 @@
 #include "Player.h"
-#include "AABB.h"
 #include "Timer.h"
 
 //Seth TM watermark
-
-AABB hitbox;
 
 //Timer class1
 Timer t;
@@ -13,6 +10,7 @@ Player::Player()
 {
 	hitbox.x = 200;
 	hitbox.y = 100;
+
 }
 
 
