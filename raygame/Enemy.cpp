@@ -1,4 +1,7 @@
 #include "Enemy.h"
+#include <cstdlib>
+
+Player * player;
 
 //Kyra's code 
 
@@ -7,36 +10,87 @@ Enemy::Enemy()
 	m_facing = north;
 }
 
+Enemy::Enemy(Player * p) {
+	speed = 140;
+	player = p;
+}
+
 
 void Enemy::Update()
 {
-	//Seths mini code - start
+	//Seths code
 	hitbox.x = x - 25;
 	hitbox.y = y - 25;
 	hitbox.Draw();
-	//end
 
-	movement();
+		//detect collision with players fist
+		if (hitbox.DetectCollision(player->swing))
+		{
+			alive = false;
+		}
+
+		if (alive == false)
+		{
+			DrawCircle(x, y, 25, GREEN);
+		}
+
+		//Detect collision with player
+		else if (hitbox.DetectCollision(player->hitbox)) {
+			DrawCircle(x, y, 25, RED);
+		}
+
+		else {
+			DrawCircle(x, y, 25, BLUE);
+		}
+
+		if (alive) {
+		movement();
+	}
 }
 
 //the enemy's movement in general
-void Enemy::movement()
-{
-	switch (m_facing)
-	{
-	case north:
-		m_moveUp();
-		break;
-	case east:
-		m_moveLeft();
-		break;
-	case south:
-		m_moveDown();
-		break;
-	case west:
-		m_moveRight();
-		break;
+void Enemy::movement() {
+	if (player != nullptr) {
+		if (abs(x - player->x) > abs(y - player->y)) {
+			//right
+			if (player->x > x) {
+				x += speed* GetFrameTime();
+			}
+			//left
+			else if (player->x < x) {
+				x -= speed* GetFrameTime();
+			}
+		}
+		else {
+			//down
+			if (player->y > y) {
+				y += speed* GetFrameTime();
+			}
+			//up
+			else if (player->y < y) {
+				y -= speed* GetFrameTime();
+			}
+		}
 	}
+
+	else {
+		switch (m_facing)
+		{
+		case north:
+			m_moveUp();
+			break;
+		case east:
+			m_moveLeft();
+			break;
+		case south:
+			m_moveDown();
+			break;
+		case west:
+			m_moveRight();
+			break;
+		}
+	}
+
 	
 }
 
@@ -88,5 +142,3 @@ void Enemy::m_moveRight()
 		m_facing = north;
 	}
 }
-
-

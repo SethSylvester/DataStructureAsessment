@@ -3,7 +3,7 @@
 #include "AABB.h"
 
 #pragma once
-class Player : public Actor
+static class Player : public Actor
 {
 	//Seth TM watermark
 private:
@@ -13,6 +13,9 @@ public:
 	~Player();
 
 	AABB hitbox;
+	AABB swing;
+
+	int HP = 3;
 
 	float speed = 250;
 	//DiagonalSpeed = (float)Math.Sqrt((Speed * Speed) + (Speed * Speed))/2;

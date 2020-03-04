@@ -14,22 +14,23 @@
 #include "Actor.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "UnorderdList.h"
 
 int main()
 {
 	// Initialization
 	//--------------------------------------------------------------------------------------
-	int screenWidth = 800;
-	int screenHeight = 450;
+	int screenWidth = 1000;
+	int screenHeight = 650;
 
 	InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
 	SetTargetFPS(60);
 
 	Player p;
-	AABB b;
-	Enemy e;
-	e.x = 50;
+
+	Enemy e = Enemy(&p);
+	e.x = 500;
 	e.y = 50;
 
 	Camera2D camera = { 0 };
@@ -53,6 +54,7 @@ int main()
 		playerTracking = { p.x, p.y };
 
 		camera.target = playerTracking;
+
 		//----------------------------------------------------------------------------------
 
 		// Draw
@@ -62,12 +64,6 @@ int main()
 		ClearBackground(BLACK);
 
 		BeginMode2D(camera);
-
-		b.Draw();
-
-		//Draw player and enemy
-		DrawCircle(p.x, p.y, 25, RAYWHITE);
-		DrawCircle(e.x, e.y, 25, RED);
 
 		EndMode2D();
 

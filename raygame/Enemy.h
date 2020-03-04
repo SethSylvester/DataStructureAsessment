@@ -2,6 +2,7 @@
 #include "Actor.h"
 #include "raylib.h"
 #include "AABB.h"
+#include "Player.h"
 
 //Kyra's code 
 
@@ -13,14 +14,17 @@ enum Direction
 class Enemy : public Actor
 {
 public:
+	bool alive = true;
+
 	AABB hitbox;
 
 	Enemy();
 
+	Enemy(Player * p);
+
 	~Enemy() {}
 
 	void Update();
-
 	void movement();
 
 protected:
