@@ -3,8 +3,7 @@
 #include "Iterator.h"
 
 template<typename Anytype>
-class List
-{
+class List {
 protected:
 	int m_count;
 	Node<Anytype>* m_first;
@@ -25,47 +24,39 @@ public:
 
 //Seth
 template<typename Anytype>
-inline bool List<Anytype>::isEmptyList()
-{
-	if (m_first == nullptr)
-	{
+inline bool List<Anytype>::isEmptyList() {
+	if (m_first == nullptr) {
 		return true;
 	}
-	else
-	{
+	else {
 		return false;
 	}
 }
 //Seth
 template<typename Anytype>
-inline int List<Anytype>::Length()
-{
+inline int List<Anytype>::Length() {
 	return m_count;
 }
 //Seth 
 template<typename Anytype>
-inline void List<Anytype>::DeleteNode(const Anytype & node)
-{
+inline void List<Anytype>::DeleteNode(const Anytype & node) {
 	delete &node;
 }
 
 //Return the first item in the list - H
 template<typename Anytype>
-Anytype List<Anytype>::front()
-{
+Anytype List<Anytype>::front() {
 	return m_first->Info;
 }
 
 //Return the last item in the list - H
 template<typename Anytype>
-Anytype List<Anytype>::back()
-{
+Anytype List<Anytype>::back() {
 	return m_last->Info;
 }
 
 //Return weather the list is empty - H
 template<typename Anytype>
-bool List<Anytype>::isEmpty()
-{
+bool List<Anytype>::isEmpty() {
 	return m_count == 0;
 }
