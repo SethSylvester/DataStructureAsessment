@@ -38,6 +38,8 @@ int main()
 
 	camera.rotation = 0.0f;
 	camera.zoom = 1.0f;
+	UnorderedList<Enemy*> elist;
+	elist.insertFirst(&e);
 
 	//--------------------------------------------------------------------------------------
 

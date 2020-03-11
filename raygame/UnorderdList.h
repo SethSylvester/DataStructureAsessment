@@ -2,8 +2,7 @@
 #include "List.h"
 
 template<typename Anytype>
-class UnorderedList : public List<Anytype>
-{
+class UnorderedList : public List<Anytype> {
 	public:
 		void insertFirst(const Anytype&) override;
 		void insertLast(const Anytype&) override;
@@ -13,8 +12,7 @@ class UnorderedList : public List<Anytype>
 };
 
 template<typename Anytype>
-void UnorderedList<Anytype>::insertFirst(const Anytype & Info)
-{
+void UnorderedList<Anytype>::insertFirst(const Anytype & Info) {
 
 	//Create a new Node - H
 	Node<Anytype>* fNode = new Node<Anytype>();
@@ -28,8 +26,7 @@ void UnorderedList<Anytype>::insertFirst(const Anytype & Info)
 	//Set First to point to the new node - H
 	this->m_first = fNode;
 
-	if (this->m_count == 0)
-	{
+	if (this->m_count == 0) {
 		this->m_last = fNode;
 	}
 
@@ -38,8 +35,7 @@ void UnorderedList<Anytype>::insertFirst(const Anytype & Info)
 }
 
 template<typename Anytype>
-void UnorderedList<Anytype>::insertLast(const Anytype & Info)
-{
+void UnorderedList<Anytype>::insertLast(const Anytype & Info) {
 	//Crate a new Node - H
 	Node<Anytype>* lNode = new Node<Anytype>();
 
@@ -48,8 +44,7 @@ void UnorderedList<Anytype>::insertLast(const Anytype & Info)
 
 	//Set the new nodes "next" to be null in the list - H
 	lNode->Next = nullptr;
-	if (this->m_count == 0)
-	{
+	if (this->m_count == 0) {
 		this->m_first = lNode;
 		this->m_last = lNode;
 		this->m_count++;
@@ -70,50 +65,58 @@ void UnorderedList<Anytype>::insertLast(const Anytype & Info)
 }
 
 template<typename Anytype>
-inline void UnorderedList<Anytype>::DeleteNode(const Anytype & node)
-{
+inline void UnorderedList<Anytype>::DeleteNode(const Anytype & node) {
 	//deletes the node.
-	//Todo is to fix the next and last cuz this probably messes up the list
 	// -Seth
-	delete & node;
+	delete &node;
 }
 
 //Seth
 template<typename Anytype>
 inline bool UnorderedList<Anytype>::Search(const Anytype & search) {
 	//If not create a temporary node to cycle through to the next node
-	Iterator<Anytype> iter(m_first);
+	//Iterator<Anytype> iter(this->m_first);
 
-	//Checks to see if the first result is the search target
-	if (iter == search) {
-		return iter;
-	}
+	Node<Anytype> *current = List<Anytype>::m_first;
 
-	else {
-		//Increment if the node isn't correct
-		iter++;
-		//If that is the search target return it.
-		if (iter == search) {
-			return iter;
+	while (current != nullptr) {
+		if (current->Info == search) {
+			return true;
 		}
-
-		//If thats not it, cycle through
 		else {
-			bool searching = true;
-			for (auto i = m_first; i != m_last; i++) {
-				//Increment iterator to the next node
-				iter++;
-				//return if its what you're looking for
-				if (iter == search) {
-					return iter;
-				}
-				//If its the last one don't try to grab a null value
-				else if (iter == m_last) {
-					searching = false;
-				}
-			}
+			current = current->Next;
 		}
 	}
+	////Checks to see if the first result is the search target
+	//if (this->front() == search) {
+	//	return true;
+	//}
+
+	//else {
+	//	//Increment if the node isn't correct
+	//	iter++;
+	//	//If that is the search target return it.
+	//	if (iter == search) {
+	//		return true;
+	//	}
+
+	//	//If thats not it, cycle through
+	//	else {
+	//		bool searching = true;
+	//		for (auto i = this->m_first; i != this->m_last; i++) {
+	//			//Increment iterator to the next node
+	//			iter++;
+	//			//return if its what you're looking for
+	//			if (iter == search) {
+	//				return true;
+	//			}
+	//			//If its the last one don't try to grab a null value
+	//			else if (iter == this->m_last) {
+	//				searching = false;
+	//			}
+	//		}
+	//	}
+	//}
 	//If nothing else return false
 	return false;
 }

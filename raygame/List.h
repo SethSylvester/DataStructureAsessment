@@ -42,10 +42,11 @@ inline int List<Anytype>::Length()
 {
 	return m_count;
 }
-//Seth
+//Seth 
 template<typename Anytype>
 inline void List<Anytype>::DeleteNode(const Anytype & node)
 {
+	delete &node;
 }
 
 //Return the first item in the list - H
