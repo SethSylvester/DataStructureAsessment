@@ -1,15 +1,12 @@
 #pragma once
 
 template<typename Anytype>
-class Node
-{
+class Node {
 	public:
-		//The info the node stores
-		Anytype Info;
-
-		//Points to the next node
-		Node<Anytype>* Next;
-
-		//Points to the previous node
-		Node<Anytype>* Previous;
+		//Data the node contains
+		Anytype data;
+		//The next node
+		Node<Anytype>* next;
+		//The previous node
+		Node<Anytype>* previous;
 };

@@ -1,15 +1,15 @@
 #pragma once
 #include "Node.h"
 
-//Seth
 template<typename Anytype>
 class Iterator {
 protected:
+	//Data of the iterator
 	int m_count;
 	Node<Anytype>* current;
 
 public:
-	Iterator() {}
+	Iterator() { }
 	Iterator(Node<Anytype> * ptr);
 
 	Anytype operator*();
@@ -28,31 +28,31 @@ inline Iterator<Anytype>::Iterator(Node<Anytype> * ptr) {
 //Returns the pointers data
 template<typename Anytype>
 inline Anytype Iterator<Anytype>::operator*() {
-	return current->Info;
+	return current->data;
 }
 
 //Increments the iterator through the list
 template<typename Anytype>
 inline Iterator<Anytype> Iterator<Anytype>::operator++() {
-	current = current->Next;
+	current = current->next;
 	return current;
 }
 
 //Decrements the iterator through the list
 template<typename Anytype>
 inline Iterator<Anytype> Iterator<Anytype>::operator--() {
-	current = current->Previous;
+	current = current->previous;
 	return current;
 }
 
 //Checks to see if data stored is equal
 template<typename Anytype>
 inline bool Iterator<Anytype>::operator==(const Iterator<Anytype>& ptr) const {
-	return (current->Info == ptr.current->Info);
+	return (current->data == ptr.current->data);
 }
 
 //Checks to see if data stored is not equal
 template<typename Anytype>
 inline bool Iterator<Anytype>::operator!=(const Iterator<Anytype>& ptr) const {
-	return !(current->Info == ptr.current->Info);
+	return !(current->data == ptr.current->data);
 }
