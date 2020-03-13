@@ -54,7 +54,7 @@ void UnorderedList<Anytype>::insertLast(const Anytype & Info) {
 	lNode->previous = this->m_last;
 
 	//Set the previous node 'Next' to be the new node
-	this->m_last->Next = lNode;
+	this->m_last->next = lNode;
 
 	//Set Last to point to the new node
 	this->m_last = lNode;
