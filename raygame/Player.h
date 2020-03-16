@@ -1,7 +1,9 @@
 #include "raylib.h"
 #include "Actor.h"
+#include "AABB.h"
+
 #pragma once
-class Player : public Actor
+static class Player : public Actor
 {
 	//Seth TM watermark
 private:
@@ -9,6 +11,11 @@ private:
 public:
 	Player();
 	~Player();
+
+	AABB hitbox;
+	AABB swing;
+
+	int HP = 3;
 
 	float speed = 250;
 	//DiagonalSpeed = (float)Math.Sqrt((Speed * Speed) + (Speed * Speed))/2;
@@ -24,5 +31,6 @@ public:
 
 	void TakeInput();
 	void Update();
+
 };
 

@@ -10,26 +10,36 @@
 ********************************************************************************************/
 
 #include "raylib.h"
+#include "AABB.h"
 #include "Actor.h"
 #include "Player.h"
-#include "AABB.h"
-#include "Timer.h"
+#include "Enemy.h"
+#include "UnorderedList.h"
 
 int main()
 {
 	// Initialization
 	//--------------------------------------------------------------------------------------
-	int screenWidth = 800;
-	int screenHeight = 450;
+	int screenWidth = 1000;
+	int screenHeight = 650;
 
 	InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
 	SetTargetFPS(60);
 
-	Camera2D camera = Camera2D();
 	Player p;
-	AABB b;
-	Timer t;
+
+	Enemy e = Enemy(&p);
+	e.x = 500;
+	e.y = 50;
+
+	Camera2D camera = { 0 };
+	Vector2 playerTracking = {p.x, p.y};
+
+	camera.rotation = 0.0f;
+	camera.zoom = 1.0f;
+	UnorderedList<Enemy*> elist;
+	elist.insertFirst(&e);
 
 	//--------------------------------------------------------------------------------------
 
@@ -39,8 +49,14 @@ int main()
 		// Update
 		//----------------------------------------------------------------------------------
 		// TODO: Update your variables here
-		BeginMode2D(camera);
 		p.Update();
+		e.Update();
+
+		//Center the camera on the player
+		playerTracking = { p.x, p.y };
+
+		camera.target = playerTracking;
+
 		//----------------------------------------------------------------------------------
 
 		// Draw
@@ -49,15 +65,14 @@ int main()
 		
 		ClearBackground(BLACK);
 
-		b.Draw();
+		BeginMode2D(camera);
 
-		DrawCircle(p.x, p.y, 25, RAYWHITE);
+		EndMode2D();
 
-		DrawText("Congrats! You created your first window!", 190, 200, 20, RAYWHITE);
+		DrawText("Congrats! Dead meme!", 190, 200, 20, RAYWHITE);
 
 		EndDrawing();
 
-		EndMode2D();
 		//----------------------------------------------------------------------------------
 	}
 

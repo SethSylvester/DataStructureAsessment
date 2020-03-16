@@ -1,10 +1,7 @@
 #include "Player.h"
-#include "AABB.h"
 #include "Timer.h"
 
 //Seth TM watermark
-
-AABB hitbox;
 
 //Timer class1
 Timer t;
@@ -13,6 +10,7 @@ Player::Player()
 {
 	hitbox.x = 200;
 	hitbox.y = 100;
+
 }
 
 
@@ -66,8 +64,6 @@ void Player::Swing() {
 	//{
 	//	return;
 	//}
-	//Hitbox for the swing
-	AABB swing(50, 50);
 	//Setting and drawing the hitbox
 	swing.SetX(MouseXPos());
 	swing.SetY(MouseYPos());
@@ -133,4 +129,6 @@ void Player::Update()
 	hitbox.x = x - 25;
 	hitbox.y = y - 25;
 	hitbox.Draw();
+
+	DrawCircle(x, y, 25, RAYWHITE);
 }

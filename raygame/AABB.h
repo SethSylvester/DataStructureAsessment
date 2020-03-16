@@ -8,10 +8,10 @@ public:
 	float Width = 50;
 	float Height = 50;
 
-	float Top = (YAbsolute - Height)/2;
-	float Bottom = (YAbsolute + Height)/2;
-	float Left = (XAbsolute - Width)/2;
-	float Right = (XAbsolute + Width)/2;
+	float Top();
+	float Bottom();
+	float Left();
+	float Right();
 
 	void SetX(float value);
 	void SetY(float value);

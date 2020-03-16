@@ -1,37 +1,128 @@
-# raygame - sample project
+Code Design and Data Structures
 
-This is a sample C++ project setup with [raylib][raylib] for Visual Studio 2017.
-Raylib is a simple game programming framework that is designed to be friendly to
-beginners. It is created by [Ramon Santamaria (@raysan5)][raysan].
+List
 
-It is primarily intended for use by students in the Game Programming course at
-the Seattle Campus of the Academy of Interactive Entertainment.
+## I. Requirements
 
-[raylib]:https://github.com/raysan5/raylib
-[raysan]:https://github.com/raysan5
+1. Description of Problem
 
-## Building
+    - **Name**: List
 
-This project supports by **Visual Studio 2017** or newer.
+2. Output Information
 
-Clone the repository and open the solution in Visual Studio. Both the solution
-and project should already be configured and ready to start working with. To
-test this, build and run the provided sample project.
+    - None, a list.
 
-![A screenshot of the included sample project](.github/raygame.png)
+3. User Interface Information
 
-The sample project that is provided is the [basic window example][basicexample]
-from raylib. Further examples can be found in its [repository][rayexample] or
-on the [website][rayexamplesite].
+    - None
 
-You can review the [cheatsheet][raycheat] for the full range of functions made
-available through raylib.
+## II. Design
 
-[basicexample]:https://github.com/raysan5/raylib/blob/master/examples/core/core_basic_window.cpp
-[rayexample]:https://github.com/raysan5/raylib/tree/master/examples
-[rayexamplesite]:https://www.raylib.com/examples.html
-[raycheat]:https://www.raylib.com/cheatsheet/cheatsheet.html
+### Type 'Node'
+- Holds the code for Info call and pointers for next and previous node
 
+#### Field: data
+- Type: Anytype template
+
+- Desc: Holds the info for the node
+
+#### Field: next
+- Type: pointer
+
+- Desc: Points to the next node
+
+#### Field: previous
+- Type: pointer
+
+- Desc: Points to the previous node
+
+### Type 'Iterator'
+- Holds code that Iterates through the list
+
+#### Field: 'm_count'
+- Type: int
+
+- Desc: Length of the list
+
+#### Field: 'current'
+- Type: pointer
+
+- Desc: points to the current space in the list
+
+#### Method: operator*()
+- returns a pointer to the data
+
+#### Method: operator++()
+- Increments the iterator
+
+#### Method: operator--()
+- Decrements the iterator
+
+#### Method: operator==()
+- Checks to see if data stored is equal
+
+#### Method: operator!=()
+- Checks to see if data stored is not equal
+
+### Type 'UnorderedList'
+- Holds code used for adding, searching, and removing from the list
+
+#### Method: insertFirst()
+- Creates a node to be added to the top of the list
+
+#### Method: insertLast()
+- Creates a node to be added to the bottom of the list
+
+#### Method: deleteNode()
+- Deletes a node from the list
+
+#### Method: search()
+- Searchs for a item in the list
+
+### 'List'
+- Holds code for ????
+
+#### Field: 'm_count'
+- Type: int
+
+- Desc: Length of the list
+
+#### Field: 'm_first'
+- Type: pointer
+
+- Desc: points to the first in the list
+
+#### Field: 'm_last'
+- Type: pointer
+
+- Desc: points to the last in the list
+
+#### Field: 'isEmptyList'
+- Type: bool
+
+- Desc: returns if the List is empty or not
+
+#### Field: 'length'
+- Type: int
+
+- Desc: Length of the list
+
+#### Field: 'search'
+- Type: bool
+
+- Desc: Searches through the list
+
+#### Method: deleteNode()
+- Deletes a node
+
+#### Method: front()
+- Return the first item in the list
+
+#### Method: back()
+- Return the last item in the list
+
+#### Method: isEmpty()
+- Returns if the list is empty or not
 ## License
 
 MIT License - Copyright (c) 2018 Academy of Interactive Entertainment
