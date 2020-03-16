@@ -1,20 +1,20 @@
 #pragma once
 #include "List.h"
 
-template<typename Anytype>
-class UnorderedList : public List<Anytype> {
+template<typename T>
+class UnorderedList : public List<T> {
 	public:
-		void insertFirst(const Anytype&) override;
-		void insertLast(const Anytype&) override;
-		void deleteNode(const Anytype& node) override;
+		void insertFirst(const T&) override;
+		void insertLast(const T&) override;
+		void deleteNode(const T& node) override;
 
-		bool search(const Anytype& search) override;
+		bool search(const T& search) override;
 };
 
-template<typename Anytype>
-void UnorderedList<Anytype>::insertFirst(const Anytype & Info) {
+template<typename T>
+void UnorderedList<T>::insertFirst(const T & Info) {
 	//Create a new node
-	Node<Anytype>* newNode = new Node<Anytype>();
+	Node<T>* newNode = new Node<T>();
 
 	//Add data to the new node
 	newNode->data = Info;
@@ -33,10 +33,10 @@ void UnorderedList<Anytype>::insertFirst(const Anytype & Info) {
 	this->m_count++;
 }
 
-template<typename Anytype>
-void UnorderedList<Anytype>::insertLast(const Anytype & Info) {
+template<typename T>
+void UnorderedList<T>::insertLast(const T & Info) {
 	//Create a new node
-	Node<Anytype>* lNode = new Node<Anytype>();
+	Node<T>* lNode = new Node<T>();
 
 	//Add data to the new node
 	lNode->data = Info;
@@ -63,17 +63,17 @@ void UnorderedList<Anytype>::insertLast(const Anytype & Info) {
 	this->m_count++;
 }
 
-template<typename Anytype>
-inline void UnorderedList<Anytype>::deleteNode(const Anytype & node) {
+template<typename T>
+inline void UnorderedList<T>::deleteNode(const T & node) {
 	//deletes the node.
 	delete &node;
 }
 
-template<typename Anytype>
-inline bool UnorderedList<Anytype>::search(const Anytype & search) {
+template<typename T>
+inline bool UnorderedList<T>::search(const T & search) {
 	//If not create a temporary node to cycle through to the next node
 
-	Node<Anytype> *current = List<Anytype>::m_first;
+	Node<T> *current = List<T>::m_first;
 
 	//Cycles through the list until it finds the data or becomes nullptr.
 	while (current != nullptr) {

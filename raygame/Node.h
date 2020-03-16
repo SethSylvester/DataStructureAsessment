@@ -1,12 +1,12 @@
 #pragma once
 
-template<typename Anytype>
+template<typename T>
 class Node {
 	public:
 		//Data the node contains
-		Anytype data;
+		T data;
 		//The next node
-		Node<Anytype>* next;
+		Node<T>* next;
 		//The previous node
-		Node<Anytype>* previous;
+		Node<T>* previous;
 };
